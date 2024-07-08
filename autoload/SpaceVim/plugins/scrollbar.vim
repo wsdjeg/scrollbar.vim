@@ -6,6 +6,32 @@
 " License: GPLv3
 "=============================================================================
 
+""
+" @section scrollbar, plugins-scrollbar
+" @parentsection plugins
+" The `scrollbar` plugin provides a scrollbar for current windows. There are
+" two versions in SpaceVim.
+"
+" 1. Old version is written in Vim script for vim and < nvim 0.9.0
+" 2. The new version is written in Lua, and require `has('nvim-0.9.0')`
+" 
+" This plugin is included in @section(layers-ui).
+
+if has('nvim-0.9.0')
+  function! SpaceVim#plugins#scrollbar#usable() abort
+    return luaeval('require("spacevim.plugin.scrollbar").usable()')
+  endfunction
+  function! SpaceVim#plugins#scrollbar#show() abort
+    lua require('spacevim.plugin.scrollbar').show()
+  endfunction
+  function! SpaceVim#plugins#scrollbar#clear(...) abort
+    lua require('spacevim.plugin.scrollbar').clear()
+  endfunction
+  finish
+endif
+
+
+
 let s:VIM = SpaceVim#api#import('vim')
 let s:BUF = SpaceVim#api#import('vim#buffer')
 let s:WIN = SpaceVim#api#import('vim#window')
@@ -21,7 +47,7 @@ scriptencoding utf-8
 
 let s:default = {
       \    'max_size' : 10,
-      \    'min_size' : 3,
+      \    'min_size' : 5,
       \    'width' : 1,
       \    'right_offset' : 1,
       \    'excluded_filetypes' : ['startify', 'git-commit','leaderf', 'NvimTree', 'tagbar', 'defx', 'neo-tree', 'qf'],
@@ -103,6 +129,7 @@ function! s:create_scrollbar_buffer(size, lines) abort
   endif
   call s:BUF.buf_set_lines(s:scrollbar_bufnr, 0, -1, 0, a:lines)
   call s:add_highlight(s:scrollbar_bufnr, a:size)
+  call setbufvar(s:scrollbar_bufnr, '&buftype', 'nofile')
   return s:scrollbar_bufnr
 endfunction
 
@@ -156,8 +183,10 @@ function! SpaceVim#plugins#scrollbar#show() abort
         \  'row' : row,
         \  'col' : float2nr(col),
         \  'focusable' : 0,
-        \  'zindex' : 10,
         \ }
+  if has('nvim-0.5.0')
+    let opts.zindex = 10
+  endif
   if s:WIN.is_float(s:scrollbar_winid)
     if bar_size !=# s:scrollbar_size
       let s:scrollbar_size = bar_size
