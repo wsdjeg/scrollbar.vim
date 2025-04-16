@@ -6,17 +6,14 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Requirements](#requirements)
 * [Installation](#installation)
 * [Setup](#setup)
 * [Debug](#debug)
+* [Self-Promotion](#self-promotion)
+* [Credits](#credits)
 * [Feedback](#feedback)
 
 <!-- vim-markdown-toc -->
-
-## Requirements
-
-- Neovim: `exists('*nvim_open_win')`
 
 ## Installation
 
@@ -83,6 +80,19 @@ require('plug').add({
     },
 })
 ```
+
+## Self-Promotion
+
+Like this plugin? Star the repository on
+GitHub.
+
+Love this plugin? Follow [me](https://wsdjeg.net/) on
+[GitHub](https://github.com/wsdjeg) and
+[Twitter](http://twitter.com/wsdtty).
+
+## Credits
+
+- [Xuyuanp/scrollbar.nvim](https://github.com/Xuyuanp/scrollbar.nvim)
 
 ## Feedback
 
