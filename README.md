@@ -30,6 +30,12 @@ require('plug').add({
 })
 ```
 
+For vim support, please checkout [v1.0.0](https://github.com/wsdjeg/scrollbar.nvim/releases/tag/v1.0.0):
+
+```
+Plug 'wsdjeg/scrollbar.nvim', { 'tag': 'v1.0.0' }
+```
+
 ## Setup
 
 The default option:
