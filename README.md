@@ -2,7 +2,7 @@
 
 > _scrollbar.nvim_ is floating scrollbar plugin for neovim.
 
-![scrollbar](https://img.spacevim.org/scrollbar-vim.png)
+![Image](https://github.com/user-attachments/assets/a6fa9d98-fd0c-4a3c-a2c5-512e54a9453a)
 
 <!-- vim-markdown-toc GFM -->
 
