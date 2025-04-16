@@ -144,9 +144,7 @@ end
 function M.setup(opt)
     config = require('scrollbar.config').setup(opt)
     local augroup = vim.api.nvim_create_augroup('scrollbar.nvim', { clear = true })
-    vim.api.nvim_create_autocmd(vim.tbl_filter(function(ev)
-        return vim.fn.exists('##' .. ev) == 1
-    end, {
+    vim.api.nvim_create_autocmd({
         'BufEnter',
         'WinEnter',
         'QuitPre',
@@ -154,13 +152,13 @@ function M.setup(opt)
         'VimResized',
         'FocusGained',
         'WinScrolled',
-    })({
+    }, {
         pattern = { '*' },
         callback = function(ev)
             M.show()
         end,
         group = augroup,
-    }))
+    })
     vim.api.nvim_create_autocmd({ 'WinLeave', 'BufLeave', 'BufWinLeave', 'FocusLost' }, {
         pattern = { '*' },
         callback = function(ev)
